@@ -29,7 +29,7 @@ public class DisplayconfigGUI extends JFrame{
 		
 		
 		JButton btnCreatePyramid = new JButton("Create Pyramid");
-		btnCreatePyramid.setBounds(10, 227, 107, 23);
+		btnCreatePyramid.setBounds(10, 226, 134, 23);
 		getContentPane().add(btnCreatePyramid);
 		
 		JComboBox<Object> comboBox = new JComboBox<Object>();
@@ -54,7 +54,7 @@ public class DisplayconfigGUI extends JFrame{
 		getContentPane().add(comboBox_1);
 		
 		JLabel lblSetMaxWord = new JLabel("Set max word size");
-		lblSetMaxWord.setBounds(10, 124, 107, 23);
+		lblSetMaxWord.setBounds(10, 124, 134, 23);
 		getContentPane().add(lblSetMaxWord);
 		
 		txtMax = new JTextField();
@@ -64,12 +64,12 @@ public class DisplayconfigGUI extends JFrame{
 		txtMax.setColumns(20);
 		
 		JLabel lblSetMinWord = new JLabel("Set min word size");
-		lblSetMinWord.setBounds(141, 124, 100, 23);
+		lblSetMinWord.setBounds(204, 124, 134, 23);
 		getContentPane().add(lblSetMinWord);
 		
 		txtMin = new JTextField();
 		txtMin.setText("Min");
-		txtMin.setBounds(141, 158, 53, 30);
+		txtMin.setBounds(204, 158, 53, 30);
 		getContentPane().add(txtMin);
 		txtMin.setColumns(20);
 		
