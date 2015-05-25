@@ -4,14 +4,20 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import wp_display.CategorySelection;
 import wp_display.CreatePyramid;
 import wp_display.LanguageSelection;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 
 public class DisplayconfigGUI extends JFrame{
@@ -58,6 +64,20 @@ public class DisplayconfigGUI extends JFrame{
 		getContentPane().add(lblSetMaxWord);
 		
 		txtMax = new JTextField();
+		txtMax.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+				if(Integer.parseInt(txtMax.getText()) > WP_Config.maxWordSize )
+					JOptionPane.showMessageDialog(null, "Max word size is "+WP_Config.maxWordSize+" characters or smaller.");
+			}
+		});
+		txtMax.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtMax.setText("");
+			}
+		});
 		txtMax.setText("Max");
 		txtMax.setBounds(10, 158, 53, 30);
 		getContentPane().add(txtMax);
@@ -68,6 +88,20 @@ public class DisplayconfigGUI extends JFrame{
 		getContentPane().add(lblSetMinWord);
 		
 		txtMin = new JTextField();
+		txtMin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtMin.setText("");
+			}
+		});
+		txtMin.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+				if(Integer.parseInt(txtMin.getText()) < WP_Config.minWordSize )
+					JOptionPane.showMessageDialog(null, "Min word size is "+WP_Config.minWordSize+" characters or larger.");
+			}
+		});
 		txtMin.setText("Min");
 		txtMin.setBounds(204, 158, 53, 30);
 		getContentPane().add(txtMin);
@@ -75,8 +109,22 @@ public class DisplayconfigGUI extends JFrame{
 		
 		btnCreatePyramid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CreatePyramid cp = new CreatePyramid(txtMax.getText(), txtMin.getText(), comboBox.getSelectedIndex(), comboBox_1.getSelectedIndex());
-				cp.renderHTML();
+				
+				try {
+					if (WP_Config.maxWordSize < WP_Config.minWordSize){
+						JOptionPane.showMessageDialog(null, "Max size must be greater then min.");
+						
+					}else{
+					
+					CreatePyramid cp = new CreatePyramid(txtMax.getText(), txtMin.getText(), comboBox.getSelectedIndex(), comboBox_1.getSelectedIndex());
+					cp.renderHTML();
+					}
+				} catch (NumberFormatException nfe) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Both max and min must have numerical values.");
+				} catch (Exception e){
+					
+				}
 			}
 		});
 	}

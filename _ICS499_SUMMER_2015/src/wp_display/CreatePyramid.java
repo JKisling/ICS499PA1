@@ -138,9 +138,8 @@ public class CreatePyramid {
 		try{
 	pwc = pwc.getPyramidWordCollectionByCriteria(a_topic, min_len,max_len);
 		
-	PyramidWord word= pwc.getRandomWord(pwc);
+	PyramidWord word = pwc.getRandomWord(pwc);
 	System.out.println(word.getEnglish());
-	
 		}
 	catch(Exception e){
 		System.out.println("min and max need to be numbers");

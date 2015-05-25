@@ -2,6 +2,7 @@ package WordPyramid;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -38,8 +39,9 @@ public class PyramidWordCollection {
 	/**
 	 * Default constructor calls the first overloaded constructor with the file
 	 * path
+	 * @throws FileNotFoundException 
 	 */
-	public PyramidWordCollection() {
+	public PyramidWordCollection(){
 		this(Config.INPUT_FILE);
 	}
 
@@ -49,14 +51,13 @@ public class PyramidWordCollection {
 	 * @param a_file_name
 	 *            is the file path to the test data file.
 	 */
-	public PyramidWordCollection(String a_file_name) {
+	public PyramidWordCollection(String a_file_name){
 		// Create the PyramidWordsList first
 		try {
 			processPyramidWordsInputFile(a_file_name);
 		} catch (IOException e) {
-			System.out
-					.println("There was an error reading or opening the file. Perhaps the file is empty or the path is bad.");
-			System.exit(0);
+
+			System.out.println("Could not find file.");
 		}
 
 		// sort based on the length and strength
@@ -96,7 +97,7 @@ public class PyramidWordCollection {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(filename), "UTF-8"));
 
-		// igore the first line. we don't need the header line
+		// ignore the first line. we don't need the header line
 		line_read = reader.readLine();
 
 		// System.out.println(line_read);
