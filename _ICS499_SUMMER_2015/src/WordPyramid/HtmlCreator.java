@@ -14,8 +14,6 @@ public class HtmlCreator {
 	File file = new File("WordPyramid_" + dateFormat.format(date) + ".html");
 	PrintWriter out = new PrintWriter(file, "UTF-8");
 
-	
-	
 	/**
 	 * HtmlCreator constructor.
 	 * 
@@ -113,21 +111,21 @@ public class HtmlCreator {
 	
 	private void pyramid(String s)
 	{
-		out.write("<table border ='1'>");
+		out.write("<div 'style='width:800px; margin:0 auto; text-align:center'>"+"<table border ='1'>");
 		String tmp;
 		for(int i = 1; i <= s.length(); i++){
 			
-			out.write("<tr>");
+			out.write("<tr style='text-align:middle; vertical-align: middle;'>");
 			for(int j = 0; j < i; j++){
 				
 			tmp = ""+s.charAt(j);
 			tmp.trim();
-			out.write("<td colspan = '"+i+"'>"+tmp+"</td>");
+			out.write("<td colspan = '0'>"+tmp+"</td>");
 					
 			}
 			out.write("</tr>");
 		}
 		
-		out.write("</table>");
+		out.write("</table>"+"</div");
 	}
 }
