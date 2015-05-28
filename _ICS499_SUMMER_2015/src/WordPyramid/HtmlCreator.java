@@ -1,4 +1,4 @@
-package core;
+package WordPyramid;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -14,6 +14,8 @@ public class HtmlCreator {
 	File file = new File("WordPyramid_" + dateFormat.format(date) + ".html");
 	PrintWriter out = new PrintWriter(file, "UTF-8");
 
+	
+	
 	/**
 	 * HtmlCreator constructor.
 	 * 
@@ -51,7 +53,7 @@ public class HtmlCreator {
 				"<img id='settings' src='http://oi57.tinypic.com/2rrbb0x.jpg' style='float:right; margin-left:10px'></div> <div style='display:table;margin-left:auto;margin-right:auto; " +
 				"-webkit-box-shadow: 3px 3px 20px 3px #878787;box-shadow: 3px 3px 20px 3px #878787; padding:20px'>");
 
-		out.write(wordPyramidHtml);
+		pyramid(wordPyramidHtml);
 		
 		out.write("</div></div></form>");
 		
@@ -107,5 +109,24 @@ public class HtmlCreator {
 		
 		out.write("</body></html>");
 
+	}
+	
+	private void pyramid(String s)
+	{
+		out.write("<table>");
+		String tmp;
+		for(int i = 1; i <= s.length(); i++){
+			
+			out.write("<tr>");
+			for(int j = 0; j < i; j++){
+				
+			tmp = ""+s.charAt(j);			
+			out.write("<td colspan = '"+i+"'>"+tmp+"</td>");
+					
+			}
+			out.write("</tr>");
+		}
+		
+		out.write("</table>");
 	}
 }

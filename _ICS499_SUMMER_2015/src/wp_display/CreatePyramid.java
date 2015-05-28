@@ -1,5 +1,8 @@
 package wp_display;
 
+import java.io.IOException;
+
+import WordPyramid.HtmlCreator;
 import WordPyramid.PyramidWord;
 import WordPyramid.PyramidWordCollection;
 
@@ -7,7 +10,7 @@ public class CreatePyramid {
 
 	//the word that will be printed. 
 	PyramidWord word;
-	
+	HtmlCreator html;
 	/**
 	 * This Method initializes the PyramidWordCollectionand it will pass a
 	 * random word to renderHTML based on the parameters listed below.
@@ -146,8 +149,13 @@ public class CreatePyramid {
 	}
 	}
 	public void renderHTML() {
-		// TODO Auto-generated method stub
-
+		
+		try {
+			html = new HtmlCreator("Money");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
