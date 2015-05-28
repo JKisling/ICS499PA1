@@ -113,14 +113,15 @@ public class HtmlCreator {
 	
 	private void pyramid(String s)
 	{
-		out.write("<table>");
+		out.write("<table border ='1'>");
 		String tmp;
 		for(int i = 1; i <= s.length(); i++){
 			
 			out.write("<tr>");
 			for(int j = 0; j < i; j++){
 				
-			tmp = ""+s.charAt(j);			
+			tmp = ""+s.charAt(j);
+			tmp.trim();
 			out.write("<td colspan = '"+i+"'>"+tmp+"</td>");
 					
 			}
